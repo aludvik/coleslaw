@@ -94,3 +94,20 @@ Then
 1. Name of compiled binary
 2. Name of key file output by keygen
 3. (optional) Password used to encrypt key
+
+##  Rust Program
+
+Compile:
+
+    $ cd src/rust/
+    $ cargo build && mv ./target/debug/coleslaw ./
+
+Then
+
+    $ ./coleslaw ec.key [password]
+        ^^^^ ^^^^^^ ^^^^^^^^^^
+        1    2      3
+
+1. Name of compiled binary
+2. Name of key file output by keygen
+3. (optional) Password used to encrypt key
