@@ -17,6 +17,8 @@ RUN apt-get install -y -q \
  && chmod +x /usr/bin/rustup-init \
  && rustup-init -y
 
+ENV PATH=$PATH:/root/.cargo/bin
+
 WORKDIR /project
 
 CMD make
