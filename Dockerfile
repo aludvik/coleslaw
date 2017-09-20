@@ -20,5 +20,3 @@ RUN apt-get install -y -q \
 ENV PATH=$PATH:/root/.cargo/bin
 
 WORKDIR /project
-
-CMD make
