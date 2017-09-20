@@ -1,0 +1,12 @@
+[package]
+name = "coleslaw"
+version = "0.1.0"
+authors = ["ludvik"]
+build = "build.rs"
+links = "crypto"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+cc = "1.0"
