@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+build_c() {
+  cd src/c/
+  make
+  cd ../../
+  mv src/c/coleslaw ./coleslaw-c
+}
+
+build_go() {
+  cd src/go/src/coleslaw
+  go generate
+  go build
+  cd ../../../../
+  mv src/go/src/coleslaw/coleslaw ./coleslaw-go
+}
+
+build_rust() {
+  cd src/rust
+  cargo build
+  cd ../../
+  mv src/rust/target/debug/coleslaw ./coleslaw-rust
+}
+
+build_all() {
+	build_c
+	build_go
+	build_rust
+}
+
+build_all
