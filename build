@@ -11,7 +11,6 @@ build_c() {
 
 build_go() {
   cd src/go/src/coleslaw
-  go generate
   go build
   cd ../../../../
   mv src/go/src/coleslaw/coleslaw ./coleslaw-go

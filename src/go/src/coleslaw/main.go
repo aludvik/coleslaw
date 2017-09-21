@@ -6,8 +6,6 @@ import (
 	"io/ioutil"
 )
 
-//go:generate ./gen.sh
-
 func abort(msg string) {
 	fmt.Fprintf(os.Stderr, msg)
 	os.Exit(1)

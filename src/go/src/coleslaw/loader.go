@@ -1,7 +1,7 @@
 package main
 
 // #cgo LDFLAGS: -lcrypto
-// // GENERATED CODE
+// #include "../../../c/loader.c"
 import "C"
 
 import "fmt"
