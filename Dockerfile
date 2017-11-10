@@ -6,6 +6,7 @@ RUN apt-get install -y -q \
   build-essential \
   make \
   openssl \
+  python3 \
   gcc \
   man-db \
   libssl-dev
