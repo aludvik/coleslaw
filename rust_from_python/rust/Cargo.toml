@@ -1,0 +1,8 @@
+[package]
+name = "coleslaw"
+version = "0.1.0"
+authors = ["Adam M Ludvik"]
+
+[lib]
+name = "rust_from_python_ffi"
+crate-type = ["dylib"]
