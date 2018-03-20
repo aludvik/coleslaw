@@ -4,7 +4,7 @@ use cpython::{Python, PyDict, PyObject, PyResult};
 use std::collections::HashMap;
 
 // -- Python interface -- //
-pub fn import_store(py: &mut Python) -> PyResult<PyDict> {
+pub fn import_store(py: &mut Python) -> PyResult<PyObject> {
     // Variable created will be stored in locals
     let locals = PyDict::new(*py);
 
@@ -17,10 +17,28 @@ ffi.cdef("""
     int * store_get(void * store, int key);
 """)
 lib = ffi.dlopen("../rust/target/debug/libpython_from_rust.dylib")
+
+class Store:
+    @classmethod
+    def setup(cls, ffi, lib):
+        cls._ffi = ffi
+        cls._lib = lib
+
+    def __init__(self):
+        self._store = self._lib.store_new()
+
+    def put(self, key, value):
+        self._lib.store_put(self._store, self._ffi.cast("int", key), self._ffi.cast("int", value))
+
+    def get(self, key):
+        c_value = self._lib.store_get(self._store, self._ffi.cast("int", key))
+        return c_value[0]
+
+Store.setup(ffi, lib)
 "#;
 
     py.run(pycode, None, Some(&locals))?;
-    Ok(locals)
+    Ok(locals.get_item(*py, "Store").unwrap())
 }
 
 // -- C interface --
