@@ -1,0 +1,11 @@
+[package]
+name = "python_from_rust"
+version = "0.1.0"
+authors = ["Adam Ludvik <ludvik@bitwise.io>"]
+
+[dependencies]
+zmq = "0.8"
+
+[[bin]]
+name = "python_from_rust"
+path = "rust/main.rs"
