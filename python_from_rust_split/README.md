@@ -1,9 +1,8 @@
 This model uses the C ABI to communicate from Rust to Python and spawn a Python
 interpreter using the Rust cpython library. This model is good because there
 is no serialization cost in communicating between processes like with the ZMQ
-model, but the downside is memory management is difficult (who is responsible
-for freeing the memory?). It also requires writing the same interface four
-times for Rust library code.
+model. However, it requires writing the same interface four times for Rust
+library code.
 
 1. The main Rust library
 2. A C ABI wrapper around the Rust library
