@@ -1,0 +1,17 @@
+[package]
+name = "python_from_rust"
+version = "0.1.0"
+authors = ["Adam Ludvik <ludvik@bitwise.io>"]
+
+[dependencies]
+# pyo3 = "0.2"
+cpython = "0.2"
+
+[lib]
+name = "python_from_rust"
+path = "lib/lib.rs"
+crate-type = ["dylib"]
+
+[[bin]]
+name = "python_from_rust"
+path = "main/main.rs"
