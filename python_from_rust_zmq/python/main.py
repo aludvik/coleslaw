@@ -1,4 +1,5 @@
 import zmq
+import sys
 
 class Channel:
 
@@ -17,16 +18,18 @@ class Channel:
     def send(self, data):
         return self._socket.send(data)
 
-def main(connect):
+def main(connect=sys.argv[1]):
     context = zmq.Context()
     chan = Channel(context, False, connect)
 
-    while True:
-        received = chan.recv()
-        print("Received '{}' from Rust".format(received.decode("utf-8")))
-        if received == b"shutdown":
-            return
-        chan.send(b"world")
+    for i in range(10):
+        print("%d" % i)
+        cmd = "put %s %s" % (i, i+1)
+        chan.send(cmd.encode("utf-8"))
+        cmd = "get %s" % i
+        chan.send(cmd.encode("utf-8"))
+        assert(chan.recv().decode("utf-8") == str(i+1))
+    chan.send(b"shutdown")
 
 if __name__ == "__main__":
-    main("ipc://test")
+    main()
