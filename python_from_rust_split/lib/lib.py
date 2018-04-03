@@ -6,7 +6,7 @@ ffi.cdef("""
     void store_put(void * store, int key, int val);
     int * store_get(void * store, int key);
 """)
-lib = ffi.dlopen("../rust/target/debug/libpython_from_rust.dylib")
+lib = ffi.dlopen("../target/debug/libpython_from_rust.dylib")
 
 class Store:
     def __init__(self):
@@ -22,3 +22,16 @@ class Store:
     def __del__(self):
         print("store garbage collected by python")
         lib.store_drop(self._store)
+
+class Counter:
+    def __init__(self):
+        self._count = 0
+
+    def inc(self):
+        self._count += 1
+
+    def get(self):
+        return self._count
+
+    def __del__(self):
+        print("counter garbage collected by python")

@@ -50,16 +50,6 @@ impl Store {
     }
 }
 
-impl Drop for Store {
-    fn drop(&mut self) {
-        // Print to stdout so we can manually confirm the memory is freed
-        // Note that the fields of Store are still dropped automatically
-        // Trying to do this is a compiler error:
-        // ::std::mem::drop(self.store); <- Try uncommenting this
-        println!("dropping store in rust");
-    }
-}
-
 fn main() {
     let ep = "ipc://test";
 
